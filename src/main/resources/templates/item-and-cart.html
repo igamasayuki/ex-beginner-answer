@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<table border="1">
+		<tr>
+			<td rowspan="2">
+				<strong>商品一覧</strong>
+				
+				<div th:each="item,status:${application.itemList}">
+					<form th:action="@{/shopping/incart}" method="post">
+						<div>
+							<input type="hidden" name="index" th:value="${status.index}">
+							<span th:text="${item.name}"></span>
+							<span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA') + '円'}"></span>
+							<button>カートへ</button>
+						</div>
+					</form>
+				</div>
+			</td>
+			<td>
+				<strong>ショッピングカート</strong>
+				
+				<div  th:each="item,status:${session.cartItemList}">
+					<form th:action="@{/shopping/delete}" method="post">
+						<div>
+							<input type="hidden" name="index" th:value="${status.index}">
+							<span th:text="${item.name}"></span>
+							<span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA') + '円'}"></span>
+							<button>削除</button>
+						</div>
+					</form>
+				</div>
+			</td>			
+		</tr>
+		<tr>
+			<td>
+				<strong>合計</strong>
+				<div>
+					<span th:text="${#numbers.formatInteger(totalPrice, 1, 'COMMA') + '円'}"></span>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>
