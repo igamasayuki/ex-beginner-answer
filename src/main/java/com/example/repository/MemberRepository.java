@@ -48,7 +48,7 @@ public class MemberRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT id, name, age, dep_id FROM members WHERE name LIKE :name");
 		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", ("%" + name +"%"));
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name +"%");
 		
 		List<Member> memberList = template.query(sql.toString(), param, MEMBER_ROW_MAPPER);
 		
