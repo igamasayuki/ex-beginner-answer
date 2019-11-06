@@ -25,7 +25,6 @@ public class MemberRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
-	/** DBテーブルネーム */
 	private static final RowMapper<Member> MEMBER_ROW_MAPPER = (rs, i) -> {
 		
 		Member member = new Member();
@@ -47,6 +46,7 @@ public class MemberRepository {
 	public List<Member> findByName(String name) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT id, name, age, dep_id FROM members WHERE name LIKE :name");
+		sql.append(" ORDER BY age");
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name +"%");
 		
