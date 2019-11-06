@@ -36,8 +36,8 @@ public class Exam02Controller {
 	 * @param num2 足される数
 	 * @return 結果画面
 	 */
-	@RequestMapping("/result")
-	public String result(Integer num1, Integer num2) {
+	@RequestMapping("/add")
+	public String add(Integer num1, Integer num2) {
 		session.setAttribute("num1", num1);
 		session.setAttribute("num2", num2);
 		session.setAttribute("ans", num1 + num2);
@@ -50,7 +50,7 @@ public class Exam02Controller {
 	 * 
 	 * @return 結果画面2
 	 */
-	@RequestMapping("/result2")
+	@RequestMapping("/to-page2")
 	public String result2() {
 		return "exam02-result2";
 	}

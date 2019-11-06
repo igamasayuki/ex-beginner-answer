@@ -32,17 +32,18 @@ public class Exam03Controller {
 	/**
 	 * 商品の合計金額と税込合計金額を求める.
 	 * 
-	 * @param item1 １つ目の商品の値段
-	 * @param item2 ２つ目の商品の値段
-	 * @param item3 ３つ目の商品の値段
+	 * @param itemName1 １つ目の商品の値段
+	 * @param itemName2 ２つ目の商品の値段
+	 * @param itemName3 ３つ目の商品の値段
 	 * @return 結果画面
 	 */
-	@RequestMapping("totalMoney")
-	public String totalMoney(Integer item1, Integer item2, Integer item3) {
+	@RequestMapping("/purchase")
+	public String totalMoney(Integer itemName1, Integer itemName2, Integer itemName3) {
 
-		int totalItem = item1 + item2 + item3;
-		application.setAttribute("totalMoney", totalItem);
-		application.setAttribute("totalTaxMoney", (int)(totalItem * 1.08));
+		int totalPrice = itemName1 + itemName2 + itemName3;
+		int totalPriceIncludeTax = (int)(totalPrice * 1.1);
+		application.setAttribute("totalPrice", totalPrice);
+		application.setAttribute("totalPriceIncludeTax", totalPriceIncludeTax);
 
 		return "exam03-result";
 	}

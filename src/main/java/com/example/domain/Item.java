@@ -1,7 +1,7 @@
 package com.example.domain;
 
 /**
- * 商品情報を表すドメインクラスです.
+ * 商品情報を表すドメインクラス.
  * 
  * @author igamasayuki
  *

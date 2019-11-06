@@ -40,10 +40,10 @@ public class Exam05Controller {
 	 * @param model リクエストスコープ
 	 * @return 検索結果画面
 	 */
-	@RequestMapping("/result")
-	public String result(String name, Model model) {
+	@RequestMapping("/search")
+	public String search(String name, Model model) {
 		
-		List<Member> memberList = memberRepository.findByName(name);
+		List<Member> memberList = memberRepository.findByLikeName(name);
 		model.addAttribute("memberList", memberList);
 		
 		return "exam05-result";

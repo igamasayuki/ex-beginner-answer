@@ -30,10 +30,9 @@ public class Exam01Controller {
 	 * @param model リクエストパラメータ
 	 * @return 名前表示画面
 	 */
-	@RequestMapping("/result")
-	public String result(String name, Model model) {
+	@RequestMapping("/send-name")
+	public String seneName(String name, Model model) {
 		model.addAttribute("name", name);
-		
 		return "exam01-result";
 	}
 	

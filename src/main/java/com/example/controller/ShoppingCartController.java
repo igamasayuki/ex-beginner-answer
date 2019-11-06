@@ -39,12 +39,11 @@ public class ShoppingCartController {
 	 */
 	@RequestMapping("")
 	public String index(Model model) {
+		List<Item> itemList = new LinkedList<>();
 
 		Item item1 = new Item();
 		item1.setName("手帳ノート");
 		item1.setPrice(1000);
-
-		List<Item> itemList = new LinkedList<>();
 		itemList.add(item1);
 
 		Item item2 = new Item();
@@ -116,7 +115,7 @@ public class ShoppingCartController {
 
 
 	/**
-	 * 商品料金の合計を求める処理を行います。
+	 * 商品料金の合計を求める処理を行います.
 	 * 
 	 * @param itemList 商品情報
 	 * @return 商品料金の合計

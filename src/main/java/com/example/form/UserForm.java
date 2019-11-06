@@ -10,12 +10,15 @@ import javax.validation.constraints.NotBlank;
  */
 public class UserForm {
 	
+	/** 名前 */
 	@NotBlank(message = "名前を入力してください。")
 	private String name;
 	
+	/** 年齢 */
 	@NotBlank(message = "年齢を入力してください。")
 	private String age;
 	
+	/** コメント */
 	@NotBlank(message = "コメントを入力してください。")
 	private String comment;
 

@@ -49,8 +49,8 @@ public class Exam04Controller {
 	 * @param redirectAttributes　リダイレクトスコープ
 	 * @return 結果画面（リダイレクト）
 	 */
-	@RequestMapping("/output")
-	public String output(
+	@RequestMapping("/register-user")
+	public String registerUser(
 			@Validated UserForm form,
 			BindingResult result,
 			RedirectAttributes redirectAttributes) {
@@ -62,11 +62,12 @@ public class Exam04Controller {
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
 		
+		// 型が違うフィールドは自動でコピーされないため手動でコピー
 		user.setAge(form.getIntAge());
 		
 		redirectAttributes.addFlashAttribute("user", user);
 		
-		return "redirect:/exam04/output2";
+		return "redirect:/exam04/to-result";
 	}
 	
 	/**
@@ -74,8 +75,8 @@ public class Exam04Controller {
 	 * 
 	 * @return 結果画面
 	 */
-	@RequestMapping("/output2")
-	public String output2() {
+	@RequestMapping("/to-result")
+	public String toResult() {
 		return "exam04-result";
 	}
 	

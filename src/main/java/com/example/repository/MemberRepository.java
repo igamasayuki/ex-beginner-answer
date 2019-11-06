@@ -41,12 +41,11 @@ public class MemberRepository {
 	 * 名前の曖昧検索を行い条件に一致する値を取得します.
 	 * 
 	 * @param name 名前
-	 * @return メンバー情報
+	 * @return メンバー情報一覧
 	 */
-	public List<Member> findByName(String name) {
+	public List<Member> findByLikeName(String name) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, name, age, dep_id FROM members WHERE name LIKE :name");
-		sql.append(" ORDER BY age");
+		sql.append("SELECT id, name, age, dep_id FROM members WHERE name LIKE :name ORDER BY age");
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name +"%");
 		

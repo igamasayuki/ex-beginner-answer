@@ -7,7 +7,7 @@
 <body>
 	<strong>ユーザ登録</strong>
 	
-	<form th:action="@{/exam04/output}" th:object="${userForm}" method="post">
+	<form th:action="@{/exam04/register-user}" th:object="${userForm}" method="post">
 		<div th:errors="*{name}" style="color:red"></div>
 		名前:<input type="text" name="name" th:field="*{name}"><br>
 		
