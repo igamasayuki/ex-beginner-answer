@@ -40,7 +40,7 @@ public class Exam02Controller {
 	public String add(Integer num1, Integer num2) {
 		session.setAttribute("num1", num1);
 		session.setAttribute("num2", num2);
-		session.setAttribute("ans", num1 + num2);
+		session.setAttribute("answer", num1 + num2);
 
 		return "exam02-result";
 	}
