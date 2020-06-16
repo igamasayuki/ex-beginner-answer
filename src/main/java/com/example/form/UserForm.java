@@ -1,6 +1,9 @@
 package com.example.form;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
 
 /**
  * ユーザ情報が入るフォームクラス.
@@ -15,8 +18,9 @@ public class UserForm {
 	private String name;
 	
 	/** 年齢 */
-	@NotBlank(message = "年齢を入力してください。")
-	private String age;
+	@NotNull(message = "年齢を入力してください。")
+	@Range(min=0, max=120, message = "年齢は0〜120の間で入力してください。")
+	private Integer age;
 	
 	/** コメント */
 	@NotBlank(message = "コメントを入力してください。")
@@ -28,23 +32,17 @@ public class UserForm {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Integer getIntAge() {
-		return Integer.parseInt(this.age);
-	}
-	public String getAge() {
-		return age;
-	}
-	public void setAge(String age) {
-		this.age = age;
-	}
-
-
 	public String getComment() {
 		return comment;
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 	
 }
