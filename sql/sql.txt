@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS members CASCADE;
+CREATE TABLE members(
+    id    serial primary key,
+    name    text not null,
+    age       integer,
+    dep_id  integer
+);
+INSERT INTO members (name , age , dep_id) values ( 'イチロー' , 21, 1);
+INSERT INTO members (name , age , dep_id) values ( 'ジロー'   , 32, 2);
+INSERT INTO members (name , age , dep_id) values ( 'サブロー' , 43, 1);
