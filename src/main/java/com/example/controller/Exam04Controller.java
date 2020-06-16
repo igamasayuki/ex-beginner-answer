@@ -62,6 +62,9 @@ public class Exam04Controller {
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
 		
+		// 自動でコピーされない年齢を手動コピー
+		user.setAge(form.getIntAge());
+		
 		redirectAttributes.addFlashAttribute("user", user);
 		
 		return "redirect:/exam04/to-result";
