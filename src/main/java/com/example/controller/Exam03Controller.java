@@ -41,7 +41,7 @@ public class Exam03Controller {
 	public String totalMoney(Integer itemName1, Integer itemName2, Integer itemName3) {
 
 		int totalPriceWithoutTax = itemName1 + itemName2 + itemName3;
-		int totalPriceIncludeTax = (int)(totalPriceWithoutTax * 1.1);
+		int totalPriceIncludeTax = (int) (totalPriceWithoutTax * 1.1);
 		application.setAttribute("totalPriceWithoutTax", totalPriceWithoutTax);
 		application.setAttribute("totalPriceIncludeTax", totalPriceIncludeTax);
 

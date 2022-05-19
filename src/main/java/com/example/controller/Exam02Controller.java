@@ -44,7 +44,7 @@ public class Exam02Controller {
 
 		return "exam02-result";
 	}
-	
+
 	/**
 	 * 結果画面2に遷移.
 	 * 
@@ -54,6 +54,5 @@ public class Exam02Controller {
 	public String result2() {
 		return "exam02-result2";
 	}
-	
 
 }

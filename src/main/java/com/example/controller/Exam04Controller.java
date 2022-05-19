@@ -20,7 +20,7 @@ import com.example.form.UserForm;
 @Controller
 @RequestMapping("/exam04")
 public class Exam04Controller {
-	
+
 	/**
 	 * フォームをリクエストスコープに格納.
 	 * 
@@ -30,7 +30,7 @@ public class Exam04Controller {
 	public UserForm setUpForm() {
 		return new UserForm();
 	}
-	
+
 	/**
 	 * 初期画面に遷移.
 	 * 
@@ -40,36 +40,33 @@ public class Exam04Controller {
 	public String index() {
 		return "exam04";
 	}
-	
+
 	/**
 	 * ユーザ情報を登録.
 	 * 
-	 * @param form　リクエストパラメータ
-	 * @param result　エラーメッセージ
-	 * @param redirectAttributes　リダイレクトスコープ
+	 * @param form               リクエストパラメータ
+	 * @param result             エラーメッセージ
+	 * @param redirectAttributes リダイレクトスコープ
 	 * @return 結果画面（リダイレクト）
 	 */
 	@RequestMapping("/register-user")
-	public String registerUser(
-			@Validated UserForm form,
-			BindingResult result,
-			RedirectAttributes redirectAttributes) {
-		
+	public String registerUser(@Validated UserForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+
 		if (result.hasErrors()) {
 			return index();
 		}
-		
+
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
-		
+
 		// 自動でコピーされない年齢を手動コピー
 		user.setAge(form.getIntAge());
-		
+
 		redirectAttributes.addFlashAttribute("user", user);
-		
+
 		return "redirect:/exam04/to-result";
 	}
-	
+
 	/**
 	 * 結果画面に遷移.
 	 * 
@@ -79,5 +76,5 @@ public class Exam04Controller {
 	public String toResult() {
 		return "exam04-result";
 	}
-	
+
 }

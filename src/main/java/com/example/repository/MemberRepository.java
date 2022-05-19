@@ -21,22 +21,21 @@ import com.example.domain.Member;
 @Repository
 @Transactional
 public class MemberRepository {
-	
+
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
+
 	private static final RowMapper<Member> MEMBER_ROW_MAPPER = (rs, i) -> {
-		
+
 		Member member = new Member();
 		member.setId(rs.getInt("id"));
 		member.setName(rs.getString("name"));
 		member.setAge(rs.getInt("age"));
 		member.setDepId(rs.getInt("dep_id"));
-		
+
 		return member;
 	};
-	
-	
+
 	/**
 	 * 名前の曖昧検索を行い条件に一致する値を取得します.
 	 * 
@@ -46,12 +45,12 @@ public class MemberRepository {
 	public List<Member> findByLikeName(String name) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT id, name, age, dep_id FROM members WHERE name LIKE :name ORDER BY age");
-		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name +"%");
-		
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
+
 		List<Member> memberList = template.query(sql.toString(), param, MEMBER_ROW_MAPPER);
-		
+
 		return memberList;
 	}
-	
+
 }

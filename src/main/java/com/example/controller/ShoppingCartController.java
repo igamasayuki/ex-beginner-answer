@@ -29,10 +29,8 @@ public class ShoppingCartController {
 	@Autowired
 	private HttpSession session;
 
-
 	/**
-	 * Top画面にフォワードする処理を行います.
-	 * 商品一覧の商品表示、ショッピングカート内の商品料金の合計を求める処理を行っています.
+	 * Top画面にフォワードする処理を行います. 商品一覧の商品表示、ショッピングカート内の商品料金の合計を求める処理を行っています.
 	 * 
 	 * @param model リクエストスコープ
 	 * @return Top画面
@@ -74,7 +72,6 @@ public class ShoppingCartController {
 		return "item-and-cart";
 	}
 
-
 	/**
 	 * 商品をショッピングカートに入れる処理を行います.
 	 * 
@@ -96,13 +93,12 @@ public class ShoppingCartController {
 		return index(model);
 	}
 
-
 	/**
 	 * ショッピングカート内の商品を削除する処理を行います.
 	 * 
 	 * @param index リストの要素数
 	 * @param model リクエストスコープ
-	 * @return　Top画面
+	 * @return Top画面
 	 */
 	@RequestMapping("delete")
 	public String delete(String index, Model model) {
@@ -112,7 +108,6 @@ public class ShoppingCartController {
 
 		return index(model);
 	}
-
 
 	/**
 	 * 商品料金の合計を求める処理を行います.

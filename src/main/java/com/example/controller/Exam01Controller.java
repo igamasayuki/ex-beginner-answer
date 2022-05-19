@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/exam01")
 public class Exam01Controller {
-	
+
 	/**
 	 * 初期画面に遷移.
 	 * 
@@ -23,10 +23,11 @@ public class Exam01Controller {
 	public String index() {
 		return "exam01";
 	}
-	
+
 	/**
 	 * 名前を受け取り、表示する画面に遷移.
-	 * @param name 名前
+	 * 
+	 * @param name  名前
 	 * @param model リクエストパラメータ
 	 * @return 名前表示画面
 	 */
@@ -35,5 +36,5 @@ public class Exam01Controller {
 		model.addAttribute("name", name);
 		return "exam01-result";
 	}
-	
+
 }
