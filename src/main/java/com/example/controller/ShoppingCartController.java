@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Item;
@@ -30,12 +32,13 @@ public class ShoppingCartController {
 	private HttpSession session;
 
 	/**
-	 * Top画面にフォワードする処理を行います. 商品一覧の商品表示、ショッピングカート内の商品料金の合計を求める処理を行っています.
+	 * Top画面にフォワードする処理を行います. <br>
+	 * 商品一覧の商品表示、ショッピングカート内の商品料金の合計を求める処理を行っています.
 	 * 
-	 * @param model リクエストスコープ
-	 * @return Top画面
+	 * @param model モデル
+	 * @return トップ画面
 	 */
-	@RequestMapping("")
+	@GetMapping("")
 	public String index(Model model) {
 		List<Item> itemList = new LinkedList<>();
 
@@ -76,10 +79,10 @@ public class ShoppingCartController {
 	 * 商品をショッピングカートに入れる処理を行います.
 	 * 
 	 * @param index リストの要素数
-	 * @param model リクエストスコープ
-	 * @return Top画面
+	 * @param model モデル
+	 * @return トップ画面
 	 */
-	@RequestMapping("incart")
+	@PostMapping("incart")
 	public String inCart(String index, Model model) {
 
 		@SuppressWarnings("unchecked")
@@ -97,10 +100,10 @@ public class ShoppingCartController {
 	 * ショッピングカート内の商品を削除する処理を行います.
 	 * 
 	 * @param index リストの要素数
-	 * @param model リクエストスコープ
-	 * @return Top画面
+	 * @param model モデル
+	 * @return トップ画面
 	 */
-	@RequestMapping("delete")
+	@PostMapping("delete")
 	public String delete(String index, Model model) {
 		@SuppressWarnings("unchecked")
 		List<Item> cartItemList = (List<Item>) session.getAttribute("cartItemList");
@@ -109,7 +112,7 @@ public class ShoppingCartController {
 		return index(model);
 	}
 
-	/**
+	/*
 	 * 商品料金の合計を求める処理を行います.
 	 * 
 	 * @param itemList 商品情報

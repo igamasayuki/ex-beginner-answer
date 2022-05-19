@@ -2,6 +2,8 @@ package com.example.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -19,7 +21,7 @@ public class Exam01Controller {
 	 * 
 	 * @return 初期画面
 	 */
-	@RequestMapping("")
+	@GetMapping("")
 	public String index() {
 		return "exam01";
 	}
@@ -28,10 +30,10 @@ public class Exam01Controller {
 	 * 名前を受け取り、表示する画面に遷移.
 	 * 
 	 * @param name  名前
-	 * @param model リクエストパラメータ
+	 * @param model モデル
 	 * @return 名前表示画面
 	 */
-	@RequestMapping("/send-name")
+	@PostMapping("/send-name")
 	public String seneName(String name, Model model) {
 		model.addAttribute("name", name);
 		return "exam01-result";

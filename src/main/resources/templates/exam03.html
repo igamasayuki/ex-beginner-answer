@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	
-	<form th:action="@{/exam03/purchase}" method="post">
-		商品1:<input type="text" name="itemName1"><br>
-		商品2:<input type="text" name="itemName2"><br>
-		商品3:<input type="text" name="itemName3"><br>
-		<button>購入</button>
-	</form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <form th:action="@{/exam03/purchase}" method="post">
+      商品1:<input type="text" name="itemName1" /><br />
+      商品2:<input type="text" name="itemName2" /><br />
+      商品3:<input type="text" name="itemName3" /><br />
+      <button>購入</button>
+    </form>
+  </body>
 </html>

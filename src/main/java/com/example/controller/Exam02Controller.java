@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -24,7 +26,7 @@ public class Exam02Controller {
 	 * 
 	 * @return 初期画面
 	 */
-	@RequestMapping("")
+	@GetMapping("")
 	public String index() {
 		return "exam02";
 	}
@@ -36,7 +38,7 @@ public class Exam02Controller {
 	 * @param num2 足される数
 	 * @return 結果画面
 	 */
-	@RequestMapping("/add")
+	@PostMapping("/add")
 	public String add(Integer num1, Integer num2) {
 		session.setAttribute("num1", num1);
 		session.setAttribute("num2", num2);
@@ -50,7 +52,7 @@ public class Exam02Controller {
 	 * 
 	 * @return 結果画面2
 	 */
-	@RequestMapping("/to-page2")
+	@GetMapping("/to-page2")
 	public String result2() {
 		return "exam02-result2";
 	}

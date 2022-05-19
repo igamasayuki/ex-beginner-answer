@@ -4,6 +4,8 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -24,7 +26,7 @@ public class Exam03Controller {
 	 * 
 	 * @return 初期画面
 	 */
-	@RequestMapping("")
+	@GetMapping("")
 	public String index() {
 		return "exam03";
 	}
@@ -37,7 +39,7 @@ public class Exam03Controller {
 	 * @param itemName3 ３つ目の商品の値段
 	 * @return 結果画面
 	 */
-	@RequestMapping("/purchase")
+	@PostMapping("/purchase")
 	public String totalMoney(Integer itemName1, Integer itemName2, Integer itemName3) {
 
 		int totalPriceWithoutTax = itemName1 + itemName2 + itemName3;

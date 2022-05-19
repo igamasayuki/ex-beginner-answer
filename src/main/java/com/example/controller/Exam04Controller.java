@@ -4,7 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,39 +22,40 @@ import com.example.form.UserForm;
 @RequestMapping("/exam04")
 public class Exam04Controller {
 
-	/**
-	 * フォームをリクエストスコープに格納.
-	 * 
-	 * @return フォームオブジェクト
-	 */
-	@ModelAttribute
-	public UserForm setUpForm() {
-		return new UserForm();
-	}
+//	/**
+//	 * フォームをリクエストスコープに格納.
+//	 * 
+//	 * @return フォームオブジェクト
+//	 */
+//	@ModelAttribute
+//	public UserForm setUpForm() {
+//		return new UserForm();
+//	}
 
 	/**
 	 * 初期画面に遷移.
 	 * 
+	 * @param form  フォーム
 	 * @return 初期画面
 	 */
-	@RequestMapping("")
-	public String index() {
+	@GetMapping("")
+	public String index(UserForm userForm) {
 		return "exam04";
 	}
 
 	/**
 	 * ユーザ情報を登録.
 	 * 
-	 * @param form               リクエストパラメータ
-	 * @param result             エラーメッセージ
+	 * @param form フォーム
+	 * @param result エラーメッセージ
 	 * @param redirectAttributes リダイレクトスコープ
 	 * @return 結果画面（リダイレクト）
 	 */
-	@RequestMapping("/register-user")
+	@PostMapping("/register-user")
 	public String registerUser(@Validated UserForm form, BindingResult result, RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return index();
+			return index(form);
 		}
 
 		User user = new User();
@@ -72,7 +74,7 @@ public class Exam04Controller {
 	 * 
 	 * @return 結果画面
 	 */
-	@RequestMapping("/to-result")
+	@GetMapping("/to-result")
 	public String toResult() {
 		return "exam04-result";
 	}
