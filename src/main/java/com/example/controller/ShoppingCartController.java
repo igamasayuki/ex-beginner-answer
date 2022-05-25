@@ -32,44 +32,37 @@ public class ShoppingCartController {
 	private HttpSession session;
 
 	/**
-	 * Top画面にフォワードする処理を行います. <br>
+	 * トップ画面にフォワードする処理を行います. <br>
 	 * 商品一覧の商品表示、ショッピングカート内の商品料金の合計を求める処理を行っています.
 	 * 
 	 * @param model モデル
 	 * @return トップ画面
 	 */
+	@SuppressWarnings("unchecked")
 	@GetMapping("")
 	public String index(Model model) {
-		List<Item> itemList = new LinkedList<>();
 
-		Item item1 = new Item();
-		item1.setName("手帳ノート");
-		item1.setPrice(1000);
-		itemList.add(item1);
+		List<Item> itemList = (List<Item>) application.getAttribute("itemList");
 
-		Item item2 = new Item();
-		item2.setName("文房具セット");
-		item2.setPrice(1500);
-		itemList.add(item2);
+		if (itemList == null) {
+			itemList = new LinkedList<>();
+			itemList.add(new Item("手帳ノート", 1000));
+			itemList.add(new Item("文房具セット", 1500));
+			itemList.add(new Item("ファイル", 2000));
+			application.setAttribute("itemList", itemList);
+		}
 
-		Item item3 = new Item();
-		item3.setName("ファイル");
-		item3.setPrice(2000);
-		itemList.add(item3);
-
-		application.setAttribute("itemList", itemList);
-
-		@SuppressWarnings("unchecked")
 		List<Item> cartItemList = (List<Item>) session.getAttribute("cartItemList");
 
 		int totalPrice = 0;
 		if (cartItemList == null) {
 			// カートが空なら0件のリストを入れる
 			session.setAttribute("cartItemList", new LinkedList<>());
-		} else {
-			// カートが空でなければ商品合計金額を計算
-			totalPrice = calcTotalPrice(cartItemList);
 		}
+
+		// 商品合計金額を計算
+		totalPrice = calcTotalPrice(cartItemList);
+
 		model.addAttribute("totalPrice", totalPrice);
 
 		return "item-and-cart";
@@ -78,11 +71,11 @@ public class ShoppingCartController {
 	/**
 	 * 商品をショッピングカートに入れる処理を行います.
 	 * 
-	 * @param index リストの要素数
+	 * @param index 追加する商品リストのindex番号
 	 * @param model モデル
 	 * @return トップ画面
 	 */
-	@PostMapping("incart")
+	@PostMapping("/incart")
 	public String inCart(String index, Model model) {
 
 		@SuppressWarnings("unchecked")
@@ -91,31 +84,40 @@ public class ShoppingCartController {
 
 		@SuppressWarnings("unchecked")
 		List<Item> cartItemList = (List<Item>) session.getAttribute("cartItemList");
-		cartItemList.add(item);
+		if (cartItemList != null) {
+			cartItemList.add(item);
+		} else {
+			throw new RuntimeException("ショッピングカートが存在しません");
+		}
 
-		return index(model);
+		return "redirect:/shopping";
 	}
 
 	/**
 	 * ショッピングカート内の商品を削除する処理を行います.
 	 * 
-	 * @param index リストの要素数
+	 * @param index 削除するショッピングカート内商品のindex番号
 	 * @param model モデル
 	 * @return トップ画面
 	 */
-	@PostMapping("delete")
+	@PostMapping("/delete")
 	public String delete(String index, Model model) {
 		@SuppressWarnings("unchecked")
 		List<Item> cartItemList = (List<Item>) session.getAttribute("cartItemList");
-		cartItemList.remove(Integer.parseInt(index));
+		if (cartItemList != null) {
+			cartItemList.remove(Integer.parseInt(index));
+		} else {
+			throw new RuntimeException("ショッピングカートが存在しません");
+		}
 
-		return index(model);
+		return "redirect:/shopping";
 	}
 
 	/*
 	 * 商品料金の合計を求める処理を行います.
 	 * 
 	 * @param itemList 商品情報
+	 * 
 	 * @return 商品料金の合計
 	 */
 	private Integer calcTotalPrice(List<Item> itemList) {
