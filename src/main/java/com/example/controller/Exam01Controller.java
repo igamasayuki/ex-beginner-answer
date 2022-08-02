@@ -34,7 +34,7 @@ public class Exam01Controller {
 	 * @return 名前表示画面
 	 */
 	@PostMapping("/send-name")
-	public String seneName(String name, Model model) {
+	public String sendName(String name, Model model) {
 		model.addAttribute("name", name);
 		return "exam01-result";
 	}
